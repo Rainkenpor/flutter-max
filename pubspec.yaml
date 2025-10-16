@@ -48,7 +48,7 @@ dependencies:
   flutter_svg: ^2.0.10
   
   # Carousel
-  carousel_slider: ^4.2.1
+  carousel_slider: ^5.0.0
   
   # Page indicators
   smooth_page_indicator: ^1.1.0

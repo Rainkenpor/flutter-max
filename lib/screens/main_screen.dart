@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'home_screen.dart';
 import 'categories_screen.dart';
+import 'recurring_purchases_screen.dart';
 import 'favorites_screen.dart';
 import 'cart_screen.dart';
 import 'profile_screen.dart';
@@ -19,6 +20,7 @@ class _MainScreenState extends State<MainScreen> {
   final List<Widget> _screens = [
     const HomeScreen(),
     const CategoriesScreen(),
+    const RecurringPurchasesScreen(),
     const FavoritesScreen(),
     const CartScreen(),
     const ProfileScreen(),

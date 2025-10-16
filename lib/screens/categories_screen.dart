@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/product_provider.dart';
@@ -111,14 +112,31 @@ class _CategoryCard extends StatelessWidget {
               width: 60,
               height: 60,
               decoration: BoxDecoration(
-                color: AppColors.primary.withOpacity(0.1),
+                color: AppColors.primary.withOpacity(0.3),
                 shape: BoxShape.circle,
+                
               ),
-              child: const Icon(
-                Icons.category,
-                size: 32,
-                color: AppColors.primary,
-              ),
+              child: Padding(
+                padding: const EdgeInsets.all(10),
+                child: CachedNetworkImage(
+                  imageUrl: 'https://backoffice.max.com.gt/'.toString()+( category.image ?? ''),
+                  fit: BoxFit.cover,
+                  placeholder: (context, url) => Container(
+                    color: AppColors.grey100,
+                    child: const Center(
+                      child: CircularProgressIndicator(strokeWidth: 2),
+                    ),
+                  ),
+                  errorWidget: (context, url, error) => Container(
+                    color: AppColors.grey100,
+                    child: const Icon(
+                      Icons.image_not_supported,
+                      color: AppColors.grey400,
+                      size: 48,
+                    ),
+                  ),
+                ),
+              )
             ),
             const SizedBox(height: 12),
             Padding(

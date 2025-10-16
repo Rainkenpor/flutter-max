@@ -32,22 +32,51 @@ class Product {
   });
 
   factory Product.fromJson(Map<String, dynamic> json) {
+    // Extraer precio de la estructura real de la API
+    final prices = json['prices'] as Map<String, dynamic>?;
+    double regularPrice = 0.0;
+    double? salesPrice;
+    
+    if (prices != null) {
+      regularPrice = _parsePrice(prices['regularPrice']?['value']);
+      final salePriceValue = prices['salesPrice']?['value'];
+      if (salePriceValue != null) {
+        salesPrice = _parsePrice(salePriceValue);
+      }
+    }
+    
+    // Usar salesPrice si existe, sino regularPrice
+    final finalPrice = salesPrice ?? regularPrice;
+    final originalPriceValue = salesPrice != null ? regularPrice : null;
+    
+    // Extraer imagen
+    final thumbnailImage = json['thumbnailImage'] as Map<String, dynamic>?;
+    final imageUrl = thumbnailImage?['url'] as String?;
+    
+    // Extraer categorías
+    final categories = json['categories'] as List?;
+    final categoryName = categories != null && categories.isNotEmpty
+        ? categories.first['title'] ?? ''
+        : '';
+    
+    // Extraer marca
+    final brandData = json['brand'] as Map<String, dynamic>?;
+    final brandName = brandData?['name'] as String?;
+    
     return Product(
-      id: json['id'] ?? json['sku'] ?? '',
-      name: json['name'] ?? json['description'] ?? '',
-      description: json['description'] ?? json['longDescription'] ?? '',
-      price: _parsePrice(json['price'] ?? json['normalPrice']),
-      originalPrice: json['originalPrice'] != null 
-          ? _parsePrice(json['originalPrice']) 
-          : null,
-      images: _parseImages(json['images'] ?? json['image'] ?? []),
-      category: json['category'] ?? json['categoryName'] ?? '',
-      brand: json['brand'] ?? json['manufacturer'],
-      sizes: _parseSizes(json['sizes'] ?? json['attributes']?['size']),
-      colors: _parseColors(json['colors'] ?? json['attributes']?['color']),
-      isHighRated: json['isHighRated'] ?? false,
-      rating: json['rating']?.toDouble(),
-      reviewCount: json['reviewCount'],
+      id: json['sku'] ?? json['id'] ?? '',
+      name: json['title'] ?? json['name'] ?? '',
+      description: json['description'] ?? '',
+      price: finalPrice,
+      originalPrice: originalPriceValue,
+      images: imageUrl != null ? [imageUrl] : [],
+      category: categoryName,
+      brand: brandName,
+      sizes: null, // Las tallas vendrían en variants si existen
+      colors: null, // Los colores vendrían en variants si existen
+      isHighRated: false, // Podría basarse en ratings si existen
+      rating: null,
+      reviewCount: null,
       additionalData: json,
     );
   }
@@ -78,37 +107,6 @@ class Product {
       return double.tryParse(price.replaceAll(',', '')) ?? 0.0;
     }
     return 0.0;
-  }
-
-  static List<String> _parseImages(dynamic images) {
-    if (images is List) {
-      return images.map((e) => e.toString()).toList();
-    }
-    if (images is String) {
-      return [images];
-    }
-    return [];
-  }
-
-  static List<String>? _parseSizes(dynamic sizes) {
-    if (sizes == null) return null;
-    if (sizes is List) {
-      return sizes.map((e) => e.toString()).toList();
-    }
-    return null;
-  }
-
-  static List<ProductColor>? _parseColors(dynamic colors) {
-    if (colors == null) return null;
-    if (colors is List) {
-      return colors.map((e) {
-        if (e is Map) {
-          return ProductColor.fromJson(e as Map<String, dynamic>);
-        }
-        return ProductColor(name: e.toString(), hex: '#000000');
-      }).toList();
-    }
-    return null;
   }
 
   bool get hasDiscount => originalPrice != null && originalPrice! > price;

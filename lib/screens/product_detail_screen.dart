@@ -367,7 +367,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                         builder: (context, cart, child) {
                           final isInCart = cart.isInCart(widget.product.id);
                           return Text(
-                            isInCart ? 'Agregar Más' : "Men's Shoes",
+                            isInCart ? 'Agregar Más' : "Agregar al Carrito",
                           );
                         },
                       ),

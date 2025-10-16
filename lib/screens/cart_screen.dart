@@ -27,7 +27,7 @@ class _CartScreenState extends State<CartScreen> {
     return Scaffold(
       backgroundColor: AppColors.background,
       appBar: AppBar(
-        title: const Text('My Chart'),
+        title: const Text('Mi Carrito'),
         backgroundColor: AppColors.background,
         elevation: 0,
         actions: [
@@ -130,7 +130,7 @@ class _CartScreenState extends State<CartScreen> {
                 const SizedBox(width: 12),
                 const Expanded(
                   child: Text(
-                    'Promo Code or Voucher',
+                    '¿Tienes un código promocional?',
                     style: TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.w500,
@@ -201,10 +201,10 @@ class _CartScreenState extends State<CartScreen> {
         children: [
           _buildSummaryRow('Sub Total', cart.subtotal),
           const SizedBox(height: 12),
-          _buildSummaryRow('Shipping', cart.shipping),
+          _buildSummaryRow('Envío', cart.shipping),
           if (cart.discount > 0) ...[
             const SizedBox(height: 12),
-            _buildSummaryRow('Discount', -cart.discount, isDiscount: true),
+            _buildSummaryRow('Descuento', -cart.discount, isDiscount: true),
           ],
           const Divider(height: 24),
           _buildSummaryRow('Total', cart.total, isTotal: true),
@@ -244,7 +244,7 @@ class _CartScreenState extends State<CartScreen> {
           ),
         ),
         Text(
-          '\$${amount.abs().toStringAsFixed(2)}',
+          '\Q${amount.abs().toStringAsFixed(2)}',
           style: TextStyle(
             fontSize: isTotal ? 20 : 16,
             fontWeight: isTotal ? FontWeight.bold : FontWeight.w600,
@@ -380,7 +380,7 @@ class _CartItemCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      '\$${item.product.price.toStringAsFixed(2)}',
+                      '\Q${item.product.price.toStringAsFixed(2)}',
                       style: const TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,

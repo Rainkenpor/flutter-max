@@ -11,7 +11,7 @@ class ProfileScreen extends StatelessWidget {
     final user = User(
       id: '1',
       name: 'Usuario Max',
-      email: 'usuario@max.com.gt',
+      email: 'usuario@max',
       phone: '+502 1234-5678',
     );
 

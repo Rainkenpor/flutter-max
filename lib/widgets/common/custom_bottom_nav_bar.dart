@@ -62,15 +62,22 @@ class CustomBottomNavBar extends StatelessWidget {
             ),
             BottomNavigationBarItem(
               icon: _NavIcon(
-                icon: Icons.favorite_border,
+                icon: Icons.autorenew_rounded,
                 isSelected: currentIndex == 2,
+              ),
+              label: 'Recurrentes',
+            ),
+            BottomNavigationBarItem(
+              icon: _NavIcon(
+                icon: Icons.favorite_border,
+                isSelected: currentIndex == 3,
               ),
               label: 'Favoritos',
             ),
             BottomNavigationBarItem(
               icon: _NavIcon(
                 icon: Icons.shopping_bag_outlined,
-                isSelected: currentIndex == 3,
+                isSelected: currentIndex == 4,
                 showBadge: true,
               ),
               label: 'Carrito',
@@ -78,7 +85,7 @@ class CustomBottomNavBar extends StatelessWidget {
             BottomNavigationBarItem(
               icon: _NavIcon(
                 icon: Icons.person_outline,
-                isSelected: currentIndex == 4,
+                isSelected: currentIndex == 5,
               ),
               label: 'Perfil',
             ),

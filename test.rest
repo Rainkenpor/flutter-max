@@ -20,3 +20,6 @@ curl 'https://apigt.tienda.max.com.gt/v2/products/byTarget' \
   -H 'user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36' \
   -H 'x-api-key: ROGi1LWB3saRqFw4Xdqc4Z9jGWVxYLl9ZEZjbJu9' \
   --data-raw '{"target":"ids","keyParameters":{"ids":["SML705FDA","SML300NZE","BAND10PURP","WATCHGT5B","WATCHGT4V","SML320NZS","WATCHFIT4B","MIWATCH5B","MIWATCH5P","WATCHFIT4PROB","MX4M3LZA","WATCHFIT4M","MIBAND9PROPK","MWWT3AMA","MIWATCHS4B","MWWL3AMA","MIBAND9B"]}}'
+
+###
+curl https://backoffice.max.com.gt/media/catalog/category/lineaBlanca_1.png

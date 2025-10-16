@@ -156,7 +156,7 @@ class _HomeScreenState extends State<HomeScreen> {
       children: [
         CarouselSlider(
           options: CarouselOptions(
-            height: 180,
+            height: 183,
             viewportFraction: 0.9,
             autoPlay: true,
             autoPlayInterval: const Duration(seconds: 5),
@@ -203,7 +203,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                         const SizedBox(height: 8),
                         SizedBox(
-                          width: 180,
+                          width: double.infinity,
                           child: Text(
                             banner.subtitle,
                             style: const TextStyle(
@@ -366,7 +366,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             const SizedBox(height: 16),
             SizedBox(
-              height: 280,
+              height: 265,
               child: saleProducts.isEmpty
                   ? const Center(child: CircularProgressIndicator())
                   : ListView.builder(

@@ -12,6 +12,7 @@ class ApiService {
   static Map<String, String> get _headers => {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36',
         'x-api-key': apiKey,
       };
 
@@ -28,12 +29,22 @@ class ApiService {
       if (response.statusCode == 200) {
         final data = json.decode(response.body);
         if (data is List) {
+          // Si es un array directo
           return data.map((e) => Category.fromJson(e)).toList();
-        } else if (data is Map && data['data'] != null) {
-          return (data['data'] as List)
-              .map((e) => Category.fromJson(e))
-              .toList();
+        } else if (data is Map) {
+          // La API devuelve un objeto con 'children' que contiene las categorías
+          if (data['children'] != null) {
+            print('Found ${(data['children'] as List).length} categories in children');
+            return (data['children'] as List)
+                .map((e) => Category.fromJson(e))
+                .toList();
+          } else if (data['data'] != null) {
+            return (data['data'] as List)
+                .map((e) => Category.fromJson(e))
+                .toList();
+          }
         }
+        print('No categories found in response');
         return [];
       } else {
         throw Exception('Failed to load categories: ${response.statusCode}');
@@ -81,25 +92,26 @@ class ApiService {
         }),
       );
 
-      if (response.statusCode == 200) {
+      if (response.statusCode == 200 || response.statusCode == 201) {
         final data = json.decode(response.body);
-        if (data is List) {
+        
+        // La API devuelve: {products: [...], filters: ..., categories: ...}
+        if (data is Map && data['products'] != null) {
+          final productsList = data['products'] as List;
+          print('✅ Loaded ${productsList.length} products');
+          return productsList.map((e) => Product.fromJson(e)).toList();
+        } else if (data is List) {
           return data.map((e) => Product.fromJson(e)).toList();
-        } else if (data is Map && data['data'] != null) {
-          return (data['data'] as List)
-              .map((e) => Product.fromJson(e))
-              .toList();
-        } else if (data is Map && data['products'] != null) {
-          return (data['products'] as List)
-              .map((e) => Product.fromJson(e))
-              .toList();
         }
+        
+        print('⚠️ Unexpected response format');
         return [];
       } else {
-        throw Exception('Failed to load products: ${response.statusCode}');
+        print('❌ Failed to load products: ${response.statusCode}');
+        return [];
       }
     } catch (e) {
-      print('Error fetching products by ids: $e');
+      print('❌ Error fetching products by ids: $e');
       return [];
     }
   }

@@ -19,17 +19,21 @@ class Category {
 
   factory Category.fromJson(Map<String, dynamic> json) {
     return Category(
-      id: json['id'] ?? json['categoryId'] ?? '',
-      name: json['name'] ?? json['categoryName'] ?? '',
+      id: (json['id'] ?? json['categoryId'] ?? '').toString(),
+      name: json['title'] ?? json['name'] ?? json['categoryName'] ?? '',
       description: json['description'],
-      image: json['image'] ?? json['imageUrl'],
-      subcategories: json['subcategories'] != null
-          ? (json['subcategories'] as List)
+      image:  (json['icon'] ?? json['image'] ?? json['imageUrl']),
+      subcategories: json['children'] != null
+          ? (json['children'] as List)
               .map((e) => Category.fromJson(e as Map<String, dynamic>))
               .toList()
-          : null,
+          : (json['subcategories'] != null
+              ? (json['subcategories'] as List)
+                  .map((e) => Category.fromJson(e as Map<String, dynamic>))
+                  .toList()
+              : null),
       depth: json['depth'] ?? json['level'],
-      parentId: json['parentId'] ?? json['parentCategoryId'],
+      parentId: (json['parentId'] ?? json['parentCategoryId'] ?? '').toString(),
     );
   }
 
