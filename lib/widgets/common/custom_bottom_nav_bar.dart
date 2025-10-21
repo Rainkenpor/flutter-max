@@ -48,36 +48,29 @@ class CustomBottomNavBar extends StatelessWidget {
           items: [
             BottomNavigationBarItem(
               icon: _NavIcon(
-                icon: Icons.home_outlined,
-                isSelected: currentIndex == 0,
-              ),
-              label: 'Home',
-            ),
-            BottomNavigationBarItem(
-              icon: _NavIcon(
                 icon: Icons.grid_view_rounded,
-                isSelected: currentIndex == 1,
+                isSelected: currentIndex == 0,
               ),
               label: 'Categorías',
             ),
             BottomNavigationBarItem(
               icon: _NavIcon(
-                icon: Icons.autorenew_rounded,
-                isSelected: currentIndex == 2,
-              ),
-              label: 'Recurrentes',
-            ),
-            BottomNavigationBarItem(
-              icon: _NavIcon(
                 icon: Icons.favorite_border,
-                isSelected: currentIndex == 3,
+                isSelected: currentIndex == 1,
               ),
               label: 'Favoritos',
             ),
             BottomNavigationBarItem(
               icon: _NavIcon(
+                icon: Icons.home_outlined,
+                isSelected: currentIndex == 2,
+              ),
+              label: 'Home',
+            ),
+            BottomNavigationBarItem(
+              icon: _NavIcon(
                 icon: Icons.shopping_bag_outlined,
-                isSelected: currentIndex == 4,
+                isSelected: currentIndex == 3,
                 showBadge: true,
               ),
               label: 'Carrito',
@@ -85,7 +78,7 @@ class CustomBottomNavBar extends StatelessWidget {
             BottomNavigationBarItem(
               icon: _NavIcon(
                 icon: Icons.person_outline,
-                isSelected: currentIndex == 5,
+                isSelected: currentIndex == 4,
               ),
               label: 'Perfil',
             ),
@@ -110,7 +103,9 @@ class _NavIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Widget iconWidget = Container(
-      padding: const EdgeInsets.all(8),
+      padding: isSelected
+          ? const EdgeInsets.symmetric(horizontal: 17, vertical: 8)
+          : const EdgeInsets.all(8),
       decoration: BoxDecoration(
         color: isSelected ? AppColors.primary : Colors.transparent,
         borderRadius: BorderRadius.circular(12),

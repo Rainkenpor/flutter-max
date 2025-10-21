@@ -41,28 +41,32 @@ class ProductCard extends StatelessWidget {
             Stack(
               children: [
                 ClipRRect(
-                  borderRadius:
-                      const BorderRadius.vertical(top: Radius.circular(16)),
+                  borderRadius: const BorderRadius.vertical(
+                    top: Radius.circular(16),
+                  ),
                   child: AspectRatio(
                     aspectRatio: 1,
                     child: product.images.isNotEmpty
-                        ? CachedNetworkImage(
-                            imageUrl: product.images.first,
-                            fit: BoxFit.cover,
-                            placeholder: (context, url) => Container(
-                              color: AppColors.grey100,
-                              child: const Center(
-                                child: CircularProgressIndicator(
-                                  strokeWidth: 2,
+                        ? Padding(
+                            padding: const EdgeInsets.all(16.0),
+                            child: CachedNetworkImage(
+                              imageUrl: product.images.first,
+                              fit: BoxFit.cover,
+                              placeholder: (context, url) => Container(
+                                color: AppColors.grey100,
+                                child: const Center(
+                                  child: CircularProgressIndicator(
+                                    strokeWidth: 2,
+                                  ),
                                 ),
                               ),
-                            ),
-                            errorWidget: (context, url, error) => Container(
-                              color: AppColors.grey100,
-                              child: const Icon(
-                                Icons.image_not_supported,
-                                color: AppColors.grey400,
-                                size: 48,
+                              errorWidget: (context, url, error) => Container(
+                                color: AppColors.grey100,
+                                child: const Icon(
+                                  Icons.image_not_supported,
+                                  color: AppColors.grey400,
+                                  size: 48,
+                                ),
                               ),
                             ),
                           )
@@ -128,9 +132,7 @@ class ProductCard extends StatelessWidget {
                             shape: BoxShape.circle,
                           ),
                           child: Icon(
-                            isFavorite
-                                ? Icons.favorite
-                                : Icons.favorite_border,
+                            isFavorite ? Icons.favorite : Icons.favorite_border,
                             size: 18,
                             color: isFavorite
                                 ? AppColors.primary
@@ -152,17 +154,17 @@ class ProductCard extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     // Nombre del producto
-                      Text(
-                        product.name,
-                        style: const TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w600,
-                          color: AppColors.text,
-                        ),
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
+                    Text(
+                      product.name,
+                      style: const TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600,
+                        color: AppColors.text,
                       ),
-                    
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+
                     // Categoría
                     Text(
                       product.category,
