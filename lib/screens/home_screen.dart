@@ -288,8 +288,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           style: TextStyle(
                             fontSize: 24,
                             fontWeight: FontWeight.bold,
-                            color:
-                                isSelected ? Colors.white : AppColors.text,
+                            color: isSelected ? Colors.white : AppColors.text,
                           ),
                         ),
                       ),
@@ -331,7 +330,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const Text(
-                        'Today Sale!',
+                        '¡Ventas de Hoy!',
                         style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
@@ -357,10 +356,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ],
                   ),
-                  TextButton(
-                    onPressed: () {},
-                    child: const Text('See More'),
-                  ),
+                  TextButton(onPressed: () {}, child: const Text('Ver más')),
                 ],
               ),
             ),
@@ -400,10 +396,7 @@ class _HomeScreenState extends State<HomeScreen> {
             children: [
               const Text(
                 'Featured Products',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 16),
               featuredProducts.isEmpty
@@ -418,11 +411,11 @@ class _HomeScreenState extends State<HomeScreen> {
                       physics: const NeverScrollableScrollPhysics(),
                       gridDelegate:
                           const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        childAspectRatio: 0.65,
-                        crossAxisSpacing: 16,
-                        mainAxisSpacing: 16,
-                      ),
+                            crossAxisCount: 2,
+                            childAspectRatio: 0.65,
+                            crossAxisSpacing: 16,
+                            mainAxisSpacing: 16,
+                          ),
                       itemCount: featuredProducts.length,
                       itemBuilder: (context, index) {
                         return ProductCard(product: featuredProducts[index]);
