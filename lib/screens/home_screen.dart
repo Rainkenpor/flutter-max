@@ -15,7 +15,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int _carouselIndex = 0;
-  final List<String> _brands = ['Nike', 'Adidas', 'Puma', 'NB', 'Converse'];
+  final List<String> _brands = ['Nike', 'Adidass', 'Puma', 'NB', 'Converse'];
   String _selectedBrand = 'Nike';
 
   @override
@@ -85,7 +85,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       padding: const EdgeInsets.all(16),
                       child: TextField(
                         decoration: InputDecoration(
-                          hintText: 'Search',
+                          hintText: 'Buscar productos',
                           prefixIcon: const Icon(Icons.search),
                           filled: true,
                           fillColor: AppColors.grey50,

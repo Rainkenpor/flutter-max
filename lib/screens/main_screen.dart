@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'home_screen.dart';
 import 'categories_screen.dart';
-import 'recurring_purchases_screen.dart';
 import 'favorites_screen.dart';
 import 'cart_screen.dart';
 import 'profile_screen.dart';
@@ -15,13 +14,12 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  int _currentIndex = 0;
+  int _currentIndex = 2;
 
   final List<Widget> _screens = [
-    const HomeScreen(),
     const CategoriesScreen(),
-    const RecurringPurchasesScreen(),
     const FavoritesScreen(),
+    const HomeScreen(),
     const CartScreen(),
     const ProfileScreen(),
   ];

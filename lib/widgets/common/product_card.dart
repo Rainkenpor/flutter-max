@@ -40,16 +40,16 @@ class ProductCard extends StatelessWidget {
             // Imagen del producto
             Stack(
               children: [
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: ClipRRect(
-                    borderRadius: const BorderRadius.vertical(
-                      top: Radius.circular(16),
-                    ),
-                    child: AspectRatio(
-                      aspectRatio: 1,
-                      child: product.images.isNotEmpty
-                          ? CachedNetworkImage(
+                ClipRRect(
+                  borderRadius: const BorderRadius.vertical(
+                    top: Radius.circular(16),
+                  ),
+                  child: AspectRatio(
+                    aspectRatio: 1,
+                    child: product.images.isNotEmpty
+                        ? Padding(
+                            padding: const EdgeInsets.all(16.0),
+                            child: CachedNetworkImage(
                               imageUrl: product.images.first,
                               fit: BoxFit.cover,
                               placeholder: (context, url) => Container(
@@ -67,14 +67,6 @@ class ProductCard extends StatelessWidget {
                                   color: AppColors.grey400,
                                   size: 48,
                                 ),
-                              ),
-                            )
-                          : Container(
-                              color: AppColors.grey100,
-                              child: const Icon(
-                                Icons.image,
-                                color: AppColors.grey400,
-                                size: 48,
                               ),
                             ),
                     ),
